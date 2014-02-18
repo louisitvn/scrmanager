@@ -1,0 +1,81 @@
+<script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<style>
+  input { margin: 0 }
+</style>
+<p><span id="progress"></span></p>
+
+<p><input type="button" id="resume" value="Resume" />
+   <input type="button" id="restart" value="Force Restart" /> 
+   <input type="button" id="stop" value="  Stop  " /> 
+   <input type="button" id="download" value="Download" /></p>
+
+
+<script>
+  var progressTimeout;
+  function getProgress() {
+    $.ajax({
+      url: "/home/progress"
+    }).done(function(resp) {
+      console.log(resp);
+      
+      if (resp.status == true){
+        $('#progress').html("<span style='color:green'>Running</span>, <strong>" + resp.count + "</strong> items scraped");
+        $('#resume').prop('disabled', true);
+        $('#restart').prop('disabled', false);
+        $('#stop').prop('disabled', false);
+      } else {
+        $('#progress').html("<span style='color:red'>Stopped</span>, <strong>" + resp.count + "</strong> items scraped");
+        $('#resume').prop('disabled', false);
+        $('#restart').prop('disabled', false);
+        $('#stop').prop('disabled', true);
+      }
+
+      progressTimeout = setTimeout(function() { getProgress(); }, 3000);
+    });
+  }
+
+  function disableAll() {
+    $('#restart').prop('disabled', true);
+    $('#resume').prop('disabled', true);
+    $('#stop').prop('disabled', true);
+  }
+  
+  $(document).ready(function(){
+    disableAll();
+    getProgress();
+
+    $('#restart').click(function() {
+      disableAll();
+      $.ajax({
+        url: "/home/restart"
+      }).done(function() {
+        
+        getProgress();
+      });
+    });
+
+    $('#resume').click(function() {
+      disableAll();
+      $.ajax({
+        url: "/home/resume"
+      }).done(function() {
+        
+        getProgress();
+      });
+    });
+
+    $('#stop').click(function() {
+      disableAll();
+      $.ajax({
+        url: "/home/kill"
+      }).done(function() {
+        
+        getProgress();
+      });
+    });
+
+    $('#download').click(function() {
+      window.location = '/home/download';
+    });
+  });
+</script>

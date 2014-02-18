@@ -1,0 +1,27 @@
+<h1>Listing my_processes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_processes.each do |my_process| %>
+      <tr>
+        <td><%= my_process.pid %></td>
+        <td><%= link_to 'Show', my_process %></td>
+        <td><%= link_to 'Edit', edit_my_process_path(my_process) %></td>
+        <td><%= link_to 'Destroy', my_process, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New My process', new_my_process_path %>

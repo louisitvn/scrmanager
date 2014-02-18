@@ -1,0 +1,2 @@
+module MyProcessesHelper
+end
