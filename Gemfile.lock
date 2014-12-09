@@ -145,6 +145,7 @@ PLATFORMS
 DEPENDENCIES
   ariel
   coffee-rails (~> 4.0.0)
+  erubis
   execjs
   jbuilder (~> 1.2)
   jquery-rails
