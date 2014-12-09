@@ -152,6 +152,7 @@ DEPENDENCIES
   mechanize
   pg
   rails (= 4.0.0)
+  ref
   sass-rails (~> 4.0.0)
   sdoc
   therubyracer
