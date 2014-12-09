@@ -63,7 +63,6 @@ end
 
 require 'rubygems'
 require 'active_record'
-require 'sqlite3'
 require 'mechanize'
 
 $outdb = $options[:output]
