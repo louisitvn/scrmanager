@@ -30,7 +30,7 @@ class MyProcess < ActiveRecord::Base
     if self.running?
       # already running
     else
-      process = IO.popen("ruby /home/nghi/axial.net_scraping/scraper.rb -o /home/nghi/russscr/db/development.sqlite3")
+      process = IO.popen("ruby #{File.join(Rails.root, 'lib/scraper.rb')} -o #{File.join(Rails.root, 'db/development.sqlite3')}")
       Process.detach(process.pid)
       self.pid = process.pid
       self.save
