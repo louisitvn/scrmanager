@@ -23,6 +23,7 @@ class HomeController < ApplicationController
 
   def progress
     f = MyProcess.first
+    p "AAAAAAAA", f
     render json: {status: f.running?, count: Item.count}
   end
 
