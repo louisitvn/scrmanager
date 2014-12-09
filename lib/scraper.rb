@@ -1,3 +1,5 @@
+raise "No $DATABAE_URL found" unless ENV['DATABAE_URL']
+
 require 'optparse'
 
 $options = {}
@@ -67,9 +69,10 @@ require 'mechanize'
 $outdb = $options[:output]
 
 ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: $outdb,
-  timeout: 15000 # You'll only get the BusyException if it takes longer than 15 seconds.
+  #adapter: 'sqlite3',
+  #database: $outdb,
+  #timeout: 15000 # You'll only get the BusyException if it takes longer than 15 seconds.
+  ENV['DATABAE_URL']
 )
 
 # the Item model for handling items table
