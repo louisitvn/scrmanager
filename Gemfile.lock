@@ -146,6 +146,7 @@ DEPENDENCIES
   execjs
   jbuilder (~> 1.2)
   jquery-rails
+  json (~> 1.8)
   mechanize
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
